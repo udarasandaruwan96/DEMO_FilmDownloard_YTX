@@ -1,0 +1,316 @@
+
+*{
+    /* margin: 0px;  out ekata Set wena eka */
+    margin: 0px;
+    /* padding: 0px; in ekat set wei */
+    padding: 0px;
+}
+
+
+body{
+    font-family: "Arial";
+}
+/* header Section */
+.main_header_wrapper{
+    background: #1d1d1d;
+    color: #919191;
+    font-family: "Arial";
+}
+
+.main_header_wrapper .center_wrapper{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    padding: 5px 0px;
+}
+
+.main_header_wrapper .center_wrapper .left_wrapper{
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.main_header_wrapper .center_wrapper .left_wrapper .tagline{
+    padding-left: 15px;
+}
+
+.main_header_wrapper .center_wrapper .right_wrapper{
+    display: flex;
+    align-items: center;
+    width: 40%; 
+    justify-content: flex-end;  
+}
+ 
+.main_header_wrapper .center_wrapper .right_wrapper .search_form input{
+    border-radius: 20px;
+    background: transparent;
+    border: 1px solid #333;
+    font-size: 12px;
+    font-weight: 500px;
+    padding: 5px;
+    outline: none;
+    color: #fff;
+}
+
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul{
+    list-style: none;
+    display: flex;
+
+    /* display: flex; menu list eka eka peliyata genimata  */
+} 
+
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul li:nth-child(2) a{
+    font-weight: 500px;
+    color: #6ac045;
+}
+
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul li a{
+    text-decoration: none;
+    color: rgb(88, 86, 86);
+    padding: 0 10px;
+    font-size: 12px;
+    transition: all 0.3s ease-in-out;
+}
+
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul li:last-child a,
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul li:nth-last-child(2) a{
+    color: #fff;
+}
+
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul li:last-child a{
+    border-left: 1px solid #fff;
+
+}
+
+.main_header_wrapper .center_wrapper .right_wrapper .menu_wrapper ul li a:hover{
+    color: #fff;
+}
+
+
+/* header css */
+.main_body_wrapper{
+    background: rgb(158, 156, 156);
+    color: white;
+    background-image: url("images/user2.jpg");
+    background-size: cover;
+    position: relative ;
+}
+
+.main_body_wrapper::after{
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(to bottom,rgba(29,29,29,0,65) 0,rgba(29,29,29,1) 100%);
+    z-index: 1;
+
+}
+
+.main_body_wrapper .header_wrapper .center_wrapper{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 50px 0px 20px;
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid rgb(88, 87, 87);
+}
+
+.main_body_wrapper .header_wrapper .center_wrapper h1{
+    font-size: 45px;
+    margin-bottom: 25px;
+}
+
+.main_body_wrapper .header_wrapper .center_wrapper p{
+    width: 60%;
+    /* udin yatin 0 left and right wlin auto and botom walin25px */
+    margin: 0 auto 25px;
+    color: #cccc;
+}
+
+.main_body_wrapper .header_wrapper .center_wrapper a{
+    color: #428bca;
+    font-weight: 500px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* bottom bar */
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar{
+    padding: 20px 0 0;
+    position: relative;
+}
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar .center_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar .center_item svg{
+    fill: #6ac045;
+    width: 15px;
+    height: 15px;
+}
+
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar .center_item span{
+    padding-left: 5px;
+}
+/* ..................... */
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar .right_rss_feed{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translate(-50%);
+}
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar .right_rss_feed svg{
+    width: 15px;
+    height: 15px;
+}
+.main_body_wrapper .header_wrapper .center_wrapper .bottom_bar .right_rss_feed span {
+    padding-left: 5px;
+}
+
+.main_body_wrapper  .listing_main_wrapper{
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    margin: 0 auto;
+    padding: 40PX;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main_body_wrapper  .listing_main_wrapper .single_movies_card{
+  padding: 0 25px;
+}
+
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .image_area{
+    border: 5px solid #fff;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card{
+    position: absolute;
+    background-color: rgba(29,29,29,0,65);
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    /* hover karankota penwima */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card .center_content{
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card svg{
+    fill: #6ac045;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card .rate{
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: 500px;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card .cate{
+    margin-bottom: 40px;
+    display: block;
+    font-size: 20px;
+    font-weight: 500px;   
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card .cate span{
+    display: block;
+}
+
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .hover_card .read_more{
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #6ac045;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: 500px;
+    /* view buton hover */
+    position: relative;
+    bottom: -30px; 
+    transition: all 0.3s ease-in-out;
+}
+
+/* hover karankota penwima */
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .image_area:hover{
+  border-color: #6ac045;
+  transition: all 0.3s ease-in-out;
+
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .image_area:hover .hover_card{
+   opacity: 1;
+   visibility: visible;
+   transition: all 0.3s ease-in-out;
+}
+ /* view buton hover */
+.main_body_wrapper .listing_main_wrapper .single_movies_card .image_area:hover .hover_card .read_more{
+    bottom: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card .image_area img{
+    width: 100%; 
+}
+
+.main_body_wrapper  .listing_main_wrapper .single_movies_card span{
+    display: block;
+}
+
+.main_body_wrapper  .listing_main_wrapper .single_movies_card span.name{
+    font-weight: 500px;
+    font-size: 14px;
+}
+.main_body_wrapper  .listing_main_wrapper .single_movies_card span.year{
+    font-size: 12px;
+    color: #6ac045;
+}
+
+
+
+
+
+/* ------  footer --------- */
+
+.footer{
+    width: 100%;  
+    text-align: center;
+    padding: 30px 0;
+    
+}
+
+.footer h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+    
+}
+
+.icons .fa{
+    color: #F44336;
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+    
+}
+
+.fa-heart-o{
+  color: #F44336;  
+}

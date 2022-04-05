@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta http-equiv="content-type" content="text/html" />
+        <meta name="author" content="Udara sandaruwan" />
+        <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+       
+        <title>Baiscope.lk</title>
+        <link rel="stylesheet" href="main.css" />
+          <!-- Latest compiled and minified CSS -->
+          <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    </header>
+    <body>
+
+     <!-- header -->
+     
+        <div class = "main_header_wrapper">
+            <div class="center_wrapper">
+                 <!-- left side  has logo and text -->
+                <div class="left_wrapper">
+
+                     <div class="main_logo">
+                           <a href="main.html"><img src="images/logo.png"></a>
+                     </div>
+                     <div class="tagline"> Hd Movies at the smallest file size.</div>
+                
+                </div>
+                   <!-- right side has search and manue Bar -->
+                <div class="right_wrapper">
+
+                      <div class="search_form">
+                          <form action="" method="post"> 
+                                <input type="text" id="myInput" placeholder="Quick Search...">
+                          </form>
+                      </div>
+                      <div class="menu_wrapper">
+                        <ul>
+                            <li><a href="main.html">HOME</a></li>
+                            <li><a href="newMovies.html">4K</a></li>
+                            <li><a href="newMovies.html">Trending</a></li>
+                            <li><a href="newMovies.html">New Movies</a></li>
+                            
+                             <li><a href="#">Login</a></li>
+                             <li><a href="#">Register</a></li>
+                        </ul>
+                      </div>
+
+                </div>
+                
+            </div>
+        </div>
+        <div style="margin: 15px;">
+            <section>
+                <div class="container">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Year</th>
+                                <th>Language</th>
+                                <th>Rating</th>
+                                <th>Img</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stData">
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+                <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Film Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Film Name</td>
+                                <td><label id="lblFilmName"></label></td>
+                            </tr>
+                            <tr>
+                                <td>Year</td>
+                                <td><label id="lblYear"></label></td>
+                            </tr>
+                            <tr>
+                                <td>Language</td>
+                                <td><label id="lbLanguage"></label></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><label id="lblDescription"></label></td>
+                            </tr>
+                            <tr>
+                                <td>Torrents</td>
+                                <td><label id="lblTorrents"></label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+                <script src="assets/js/jquery-3.3.1.js" ></script>
+                <script src="assets/js/bootstrap.js"></script>
+                <script>
+                    // https://yts.mx/api/v2/list_movies.json
+        
+                    $(document).ready(function(){
+                        getAllData();
+                        // load code
+        
+                        $('#myInput').on('keyup', function(){
+                            var value = $(this).val().toLowerCase();
+                            $("#stData tr").filter(function(){
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+        
+        
+                    function getAllData(){
+                        $.ajax({
+                            type : "GET" ,
+                            url : "https://yts.mx/api/v2/list_movies.json" ,
+                            dataType : "Json" ,
+                            success : function(res){
+                                //console.log(res.data);
+                                var data = res.data;
+                                //console.log(data.page_number);
+                                if(data.page_number == 1){
+                                    console.log(data.movies);
+                                    var stHTML = "";
+                                    for(var x = 0; x < data.limit ; x++){
+                                        /*<tr>
+                                            <th>#</th>
+                                            <th>Id</th>
+                                            <th>Title</th>
+                                            <th>Year</th>
+                                            <th>Language</th>
+                                            <th>Rating</th>
+                                            <th>Img</th>
+                                            <th>&nbsp;</th>
+                                        </tr>*/
+                                        stHTML += "<tr>";
+                                        stHTML += "<td>"+(x+1)+"</td>";
+                                        stHTML += "<td>"+data.movies[x].id+"</td>";
+                                        stHTML += "<td>"+data.movies[x].title+"</td>";
+                                        stHTML += "<td>"+data.movies[x].year+"</td>";
+                                        stHTML += "<td>"+data.movies[x].language+"</td>";
+                                        stHTML += "<td>"+data.movies[x].rating+"</td>";
+                                        stHTML += "<td><img src='"+data.movies[x].small_cover_image+"'></td>";
+                                        stHTML += "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' onclick='loadModalData("+x+")'>Downloard</button></td>";
+                                        stHTML += "</tr>";
+                                    }
+        
+                                    //document.getElementById('stData').innerHTML = stHTML;
+                                    $('#stData').html(stHTML);
+                                }
+                            }
+                        });
+                    }
+        
+                    function loadModalData(v){
+                        $.ajax({
+                            type : "GET" ,
+                            url : "https://yts.mx/api/v2/list_movies.json" ,
+                            dataType : "Json" ,
+                            success : function(resalt){
+                                //console.log(resalt.data.movies);
+                                var film = resalt.data.movies;
+                                console.log(film[v]);
+                                $('#lblFilmName').html(film[v].title);
+                                $('#lblYear').html(film[v].year);
+                                $('#lbLanguage').html(film[v].language);
+                                $('#lblDescription').html(film[v].description_full);
+        
+                                var linkHTML = "";
+                                linkHTML += "<a href='"+film[v].torrents[0].url+"'>Fiml Link</a>";
+                                $('#lblTorrents').html(linkHTML);
+        
+                            }
+                        });
+                    }
+                </script>
+            </section>
+
+                        <!-- Footer -->
+<section class="footer">
+    <h4>About Us </h4>
+     <p>Achieve high resolution over extremely large magnetic field ranges, in a small, low-power package capable of operating at cryogenic temperatures.</p>
+    <div class="icons">
+       <i class="fa fa-facebook"></i>
+       <i class="fa fa-twitter"></i>
+       <i class="fa fa-instagram"></i>
+       <i class="fa fa-linkedin"></i>
+    </div>
+    <p>Made with <i class="fa fa-heart-o"></i> by Avestra Technolois</p>
+</section>
+
+        </div>
+    </body>
+    </html>
